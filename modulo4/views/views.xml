@@ -18,7 +18,7 @@
     <!-- actions opening views on models -->
 
     <record model="ir.actions.act_window" id="modulo4.action_window">
-      <field name="name">modulo4 window</field>
+      <field name="name">modulo4 windowxxxxxxxxxxxxxxxxxxxxxxxxxxx</field>
       <field name="res_model">modulo4.modulo4</field>
       <field name="view_mode">tree,form</field>
     </record>
