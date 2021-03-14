@@ -21,4 +21,4 @@ class modulo4(models.Model):
      @api.depends('value2')
      def _value_pc2(self):
          for record in self:
-             record.value2 = float(record.value) / 50
+             record.valuedelta = float(record.value) / 50
