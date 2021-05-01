@@ -1,0 +1,60 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+
+    <record model="ir.ui.view" id="pmo.list">
+      <field name="name">pmo list</field>
+      <field name="model">pmo.pmo</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </tree>
+      </field>
+    </record>
+
+
+    <!-- actions opening views on models -->
+
+    <record model="ir.actions.act_window" id="pmo.action_window">
+      <field name="name">pmo window</field>
+      <field name="res_model">pmo.pmo</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <!-- server action to the one above -->
+
+    <record model="ir.actions.server" id="pmo.action_server">
+      <field name="name">pmo server</field>
+      <field name="model_id" ref="model_pmo_pmo"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+
+
+    <!-- Top menu item -->
+
+    <menuitem name="pmo" id="pmo.menu_root"/>
+
+    <!-- menu categories -->
+
+    <menuitem name="Menu 1" id="pmo.menu_1" parent="pmo.menu_root"/>
+    <menuitem name="Menu 2" id="pmo.menu_2" parent="pmo.menu_root"/>
+
+    <!-- actions -->
+
+    <menuitem name="List" id="pmo.menu_1_list" parent="pmo.menu_1"
+              action="pmo.action_window"/>
+    <menuitem name="Server to list" id="pmo" parent="pmo.menu_2"
+              action="pmo.action_server"/>
+
+  </data>
+</odoo>
