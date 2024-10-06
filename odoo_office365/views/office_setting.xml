@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="office365_setting">
+            <field name="name">res.config.settings.office365</field>
+            <field name="model">res.config.settings</field>
+            <field name="inherit_id" ref="base.res_config_settings_view_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//form" position="inside">
+                    <app data-string="Office 365" string="Office 365" name="office365_settings" data-key="odoo_office365" groups="sales_team.group_sale_manager" logo="/odoo_office365/static/description/icon.png">
+<!--                    <div class="app_settings_block" data-string="Office 365" string="Office 365" data-key="odoo_office365" groups="sales_team.group_sale_manager">-->
+                        <div id="office365_auto_settings">
+                            <h2>Office 365 Auto Scheduler Configuration</h2>
+                            <div class="row mt16 o_settings_container">
+                                <div class="col-12 col-lg-6 o_setting_box">
+                                    <div class="o_setting_left_pane"/>
+                                    <div class="o_setting_right_pane">
+                                        <span class="o_form_label">Auto Scheduler Configuration</span>
+                                        <div class="text-muted">
+                                            This is auto Configuration settings for every user.
+                                        </div>
+                                        <div class="content-group">
+                                            <div class="row mt16">
+                                                <label for="interval_number" string="Interval Number" class="col-lg-4 o_light_label"/>
+                                                <field name="interval_number"/>
+                                            </div>
+                                            <div class="row mt8">
+                                                <label for="interval_unit" string="Interval Unit" class="col-lg-4 o_light_label"/>
+                                                <field name="interval_unit"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg-6 o_setting_box">
+                                    <div class="o_setting_left_pane"/>
+                                    <div class="o_setting_right_pane bg-warning">
+                                        <h4 style="color:red">Warning:</h4>
+                                        <p>If you select scheduled actions for your execution then do carefully because
+                                            all settings i.e. interval and interval unit will be same for every users.
+                                            For example if you set scheduled action to run/execute after every hour then
+                                        schedule action will run/execute for other users after every hour too.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id ="schedular_setting">
+                            <h2>Office 365 Auto Scheduler Settings</h2>
+                            <div class="row mt16 o_settings_container">
+                                <div class="col-12 col-lg-6 o_setting_box">
+                                    <div class="o_setting_left_pane"/>
+                                    <div class="o_setting_right_pane">
+                                        <span class="o_form_label">Auto Scheduler Settings</span>
+                                        <div class="text-muted">
+                                            This is auto scheduler settings for every user.
+                                        </div>
+                                        <div class="content-group">
+                                            <div class="row mt16">
+                                                <label for="import_schedular_settings" string="Office 365 Import Schedular" class="col-lg-4 o_light_label"/>
+                                                <field name="import_schedular_settings" widget="boolean_toggle"/>
+                                            </div>
+                                            <div class="row mt8">
+                                                <label for="export_schedular_settings" string="Office 365 Export Schedular" class="col-lg-4 o_light_label"/>
+                                                <field name="export_schedular_settings" widget="boolean_toggle"/>
+                                            </div>
+                                            <div class="content-group">
+                                                <button name="start_schedulars" type="object" string="Apply Schedular Settings" class="oe_highlight"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg-6 o_setting_box">
+                                    <div class="o_setting_left_pane"/>
+                                    <div class="o_setting_right_pane bg-warning">
+                                        <h4 style="color:red">Warning:</h4>
+                                        <p>If you Turn ON/OFF schedulars then they will execute for every user with same configuration i.e. interval and interval unit will be same for every users.
+                                            For example if you set scheduled action to run/execute after every hour then
+                                        schedule action will run/execute for other users after every hour too.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+<!--                    </div>-->
+                    </app>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
+

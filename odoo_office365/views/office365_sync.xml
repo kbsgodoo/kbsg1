@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="office365_sync_form_view">
+            <field name="name">office365.form</field>
+            <field name="model">office.sync</field>
+            <field name="arch" type="xml">
+                <form string="Office365 Settings" create="0">
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="previewScheduleAction" type="object" class="oe_stat_button" icon="fa-clock-o icon">
+                                <div class="o_field_widget o_stat_info">
+                                    <span class="o_stat_text">Scheduled Actions</span>
+                                </div>
+                            </button>
+                            <button name="get_customers" type="object" class="oe_stat_button" icon="fa-user">
+                                <field name="customers_count" widget="statinfo" string="Contacts"/>
+                            </button>
+                            <button name="get_tasks" type="object" class="oe_stat_button" icon="fa-list">
+                                <field name="tasks_count" widget="statinfo" string="Tasks"/>
+                            </button>
+                            <button name="get_events" type="object" class="oe_stat_button" icon="fa-calendar">
+                                <field name="events_count" widget="statinfo" string="Events"/>
+                            </button>
+                        </div>
+                        <div id="office365Configuration">
+                            <field name="name" invisible="1"/>
+                            <h1>Office 365 Configuration</h1>
+                            <div class="row mt16 o_settings_container">
+                                <div class="col-12 col-lg-6 o_setting_box">
+                                    <span class="o_form_label">Office 365 Login</span>
+                                    <div class="text-muted">
+                                        Here you can login with your Office 365 account to get connected with Odoo.
+                                    </div>
+                                    <div class="content-group">
+                                        <div class="mt8">
+                                            <button name='get_code' icon="fa-arrow-right" type="object" string="Get login with Office 365 account" class="btn-link"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mt16 o_settings_container">
+                                <div class="col-12 col-lg-6 o_setting_box">
+                                    <div class="o_setting_left_pane">
+                                        <field name='event_del_flag' widget="boolean_toggle"/>
+                                    </div>
+                                    <div class="o_setting_right_pane">
+                                        <span class="o_form_label">Auto Deletion in Office 365</span>
+                                        <div class="text-muted">
+                                            If this check/turn on then all those events which are synced with Office 365 if delete in Odoo will automatically delete in Office 365.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg-6 o_setting_box">
+                                    <div class="o_setting_left_pane">
+                                        <field name='office365_event_del_flag' widget="boolean_toggle"/>
+                                    </div>
+                                    <div class="o_setting_right_pane">
+                                        <span class="o_form_label">Auto Deletion in Odoo</span>
+                                        <div class="text-muted">
+                                            If this check/turn on then all those events which are synced with Office 365 if delete in Office 365 will automatically delete in Odoo.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <h3 class="mt20">Import Utility</h3>
+                            <div class="row mt16 o_settings_container">
+                                <div class="col-12 col-lg-6 o_setting_box">
+                                    <div class="o_setting_left_pane">
+                                        <field name='is_import_contact' widget="boolean_toggle"/>
+                                    </div>
+                                    <div class="o_setting_right_pane">
+                                        <span class="o_form_label">Import Contacts</span>
+                                        <div class="text-muted">
+                                            Turn on this button if you want to consider this option for execution.
+                                        </div>
+                                        <div class="content-group" invisible="not is_import_contact">
+                                            <div class="row mt16">
+                                                <label string="Contact Categories" for="contact_categories" class="col-lg-5 o_light_label"/>
+                                                <field name ='contact_categories' widget="many2many_tags"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg-6 o_setting_box">
+                                    <div class="o_setting_left_pane">
+                                        <field name='is_import_email' widget="boolean_toggle"/>
+                                    </div>
+                                    <div class="o_setting_right_pane">
+                                        <span class="o_form_label">Import Email</span>
+                                        <div class="text-muted">
+                                            Turn on this button if you want to consider this option for execution.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg-6 o_setting_box">
+                                    <div class="o_setting_left_pane">
+                                        <field name='is_import_calendar' widget="boolean_toggle"/>
+                                    </div>
+                                    <div class="o_setting_right_pane">
+                                        <span class="o_form_label">Import Calendars</span>
+                                        <div class="text-muted">
+                                            Turn on this button if you want to consider this option for execution.
+                                        </div>
+                                        <div class="content-group" invisible="not is_import_calendar">
+                                            <div class="row mt16">
+                                                <label string="Select Calendar" for="calendar_id" class="col-lg-5 o_light_label"/>
+                                                <field name='calendar_id' widget="selection"/>
+                                            </div>
+                                            <div class="row mt16">
+                                                <label string="Calendar Categories" for="categories" class="col-lg-5 o_light_label"/>
+                                                <field name ='categories' widget="many2many_tags"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg-6 o_setting_box">
+                                    <div class="o_setting_left_pane">
+                                        <field name='is_import_task' widget="boolean_toggle"/>
+                                    </div>
+                                    <div class="o_setting_right_pane">
+                                        <span class="o_form_label">Import Tasks</span>
+                                        <div class="text-muted">
+                                            Turn on this button if you want to consider this option for execution.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <h3 class="mt20">Export Utility</h3>
+                            <div class="row mt16 o_settings_container">
+                                <div class="col-12 col-lg-6 o_setting_box">
+                                    <div class="o_setting_left_pane">
+                                        <field name='is_export_contact' widget="boolean_toggle"/>
+                                    </div>
+                                    <div class="o_setting_right_pane">
+                                        <span class="o_form_label">Export Contacts</span>
+                                        <div class="text-muted">
+                                            Turn on this button if you want to consider this option for execution.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg-6 o_setting_box">
+                                    <div class="o_setting_left_pane">
+                                        <field name='is_export_calendar' widget="boolean_toggle"/>
+                                    </div>
+                                    <div class="o_setting_right_pane">
+                                        <span class="o_form_label">Export Calendars</span>
+                                        <div class="text-muted">
+                                            Turn on this button if you want to consider this option for execution.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg-6 o_setting_box">
+                                    <div class="o_setting_left_pane">
+                                        <field name='is_export_task' widget="boolean_toggle"/>
+                                    </div>
+                                    <div class="o_setting_right_pane">
+                                        <span class="o_form_label">Export Tasks</span>
+                                        <div class="text-muted">
+                                            Turn on this button if you want to consider this option for execution.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <h3>Execute Operation(s)</h3>
+                            <div class="row mt16 o_settings_container">
+                                <div class="col-12 col-lg-6 o_setting_box" >
+                                    <div class="o_setting_left_pane">
+                                        <field name='is_auto_sync' widget="boolean_toggle"/>
+                                    </div>
+                                    <div class="o_setting_right_pane">
+                                        <span class="o_form_label">Scheduled Action</span>
+                                        <div class="text-muted">
+                                            Turn on this button if you want to consider this option for execution.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg-6 o_setting_box">
+                                    <div class="o_setting_left_pane">
+                                        <field name='is_manual_sync' widget="boolean_toggle"/>
+                                    </div>
+                                    <div class="o_setting_right_pane">
+                                        <span class="o_form_label">Manual Action</span>
+                                        <div class="text-muted">
+                                            Turn on this button if you want to consider this option for execution.
+                                        </div>
+                                        <div class="content-group" invisible="not is_manual_sync">
+                                            <div class="row mt16">
+                                                <label string="From Date" for="from_date" class="col-lg-5 o_light_label"/>
+                                                <field name ='from_date'/>
+                                            </div>
+                                            <div class="row mt16">
+                                                <label string="To Date" for="to_date" class="col-lg-5 o_light_label"/>
+                                                <field name ='to_date'/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <group>
+                                <div class="content-group">
+                                    <button name="execute_operation" type="object" string="Run/Execute Operation(s)" class="oe_highlight"/>
+<!--                                    <button name="account_invoice_lines_update" type="object" string="Run/Execute Operation(s)" class="oe_highlight"/>-->
+                                </div>
+                            </group>
+
+                        </div>
+                        <h3>Webhooks</h3>
+                        <div>
+                            <group>
+                                <div class="content-group">
+                                    <button name="configure_webhook" type="object" string="Activate Webhook For Email" class="oe_highlight"/>
+                                </div>
+                            </group>
+                        </div>
+                    </sheet>
+
+                </form>
+            </field>
+        </record>
+
+        <record id="sync_user_forms_office_action" model="ir.actions.server">
+            <field name="name">Office365 Sync</field>
+            <field name="state">code</field>
+            <field name="model_id" ref="model_office_sync"/>
+            <field name="code">action=model.action_user_form_office_365()</field>
+        </record>
+
+        <menuitem id="main_office_menu" web_icon="odoo_office365,static/description/icon.png" name="Office365"
+                  groups="base.group_user"/>
+
+        <menuitem id="office365_sync_menu" name="Office365 Configurations" parent="main_office_menu"
+                  action="odoo_office365.sync_user_forms_office_action" sequence="1"/>
+    </data>
+</odoo>
+
+
