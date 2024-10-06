@@ -1,0 +1,35 @@
+<odoo>
+    <data>
+        <record id="auto_import_office365_data" model="ir.cron">
+            <field name="name">Auto Import Office 365 Data</field>
+            <field name="model_id" ref="model_office_sync"/>
+            <field name="state">code</field>
+            <field name="active">0</field>
+            <field name="code">model.auto_import()</field>
+            <field name='interval_number'>60</field>
+            <field name='interval_type'>minutes</field>
+            <field name="numbercall">-1</field>
+        </record>
+        <record id="auto_export_odoo_data" model="ir.cron">
+            <field name="name">Auto Export Odoo Data</field>
+            <field name="model_id" ref="model_office_sync"/>
+            <field name="state">code</field>
+            <field name="active">0</field>
+            <field name="code">model.auto_export()</field>
+            <field name='interval_number'>60</field>
+            <field name='interval_type'>minutes</field>
+            <field name="numbercall">-1</field>
+        </record>
+        <record id="auto_update_webhook_data" model="ir.cron">
+            <field name="name">Auto Webhook Configuration</field>
+            <field name="model_id" ref="model_office_sync"/>
+            <field name="state">code</field>
+           <field name="active">1</field>
+            <field name="code">model.auto_configure_webhook()</field>
+            <field name='interval_number'>60</field>
+            <field name='interval_type'>minutes</field>
+            <field name="numbercall">-1</field>
+        </record>
+
+    </data>
+</odoo>
