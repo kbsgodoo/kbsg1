@@ -1,0 +1,29 @@
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="partner_user_kanban_view">
+            <field name="name">partner.office365</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.res_partner_kanban_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//kanban/templates/t/div/div/div/ul" position="inside">
+                    <li style="color:blue;" >
+                        <field name="location"/>
+                    </li>
+                </xpath>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="partner_form_inherit">
+            <field name="name">partner.form.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <field name="type" position="after">
+                    <field name="firstName" invisible="is_company"/>
+                    <field name="lastName" invisible="is_company"/>
+                    <field name="middleName" invisible="is_company"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</odoo>
